@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+          "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+          "http://hibernate.org/hibernate-mapping-3.0.dtd">  
+  
+<hibernate-mapping>
+	<class name="com.javatraining.entity.Lop" table="lop">
+		<id name="id" >
+			<generator class="native"></generator>
+		</id>
+		<property name="name" column="lop_name"></property>
+		
+		<!-- Mapping quan he voi Hocsinh 
+			Khoa cua quan he (phia Lop) duoc luu o cot lop_id (tai noi the hien quan he)
+			list-index: index cua cac ojb Hocsinh trong list students
+		-->
+		<list name="students" table="hocsinh" lazy="true" inverse="false">
+			<key column="lop_id" not-null="true" ></key>
+			<list-index column="hs_id" base="0"></list-index>
+			<one-to-many class="com.javatraining.entity.Hocsinh"/>
+		</list>
+		<many-to-one name="headTeacher" column="head_teacher" unique="true" ></many-to-one>
+	</class>
+</hibernate-mapping>

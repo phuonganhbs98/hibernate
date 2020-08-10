@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+          "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+          "http://hibernate.org/hibernate-mapping-3.0.dtd">  
+  
+<hibernate-mapping>
+	<class name="com.javatraining.entity.Giaovien" table="giaovien">
+		<id name="id" column="gv_id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name" column="gv_name"></property>
+		<property name="age" column="gv_age"></property>	
+		<list name="classes" table="TeacherClass" cascade="all">
+			<key column="teacher_id" not-null="true"></key>
+			<list-index column="teacher_list_id" base="1" ></list-index>
+			<many-to-many class="com.javatraining.entity.Lop" column="class_id"></many-to-many>
+		</list>	
+		<one-to-one name="respondClass" property-ref="headTeacher"></one-to-one>
+	</class>
+</hibernate-mapping>

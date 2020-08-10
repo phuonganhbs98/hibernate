@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+          "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+          "http://hibernate.org/hibernate-mapping-3.0.dtd">  
+  
+<hibernate-mapping>
+	<class name="com.javatraining.entity.Hocsinh" table="hocsinh">
+		<id name="id" column="hs_id" type="integer">
+			<generator class="native"></generator>
+		</id>
+		<property name="name" column="hs_name"></property>
+		
+		<!-- mapping thuoc tinh classId -->
+		<property name="classId" column="lop_id" not-null="true" insert="false" update="false"></property>
+		
+		<!-- Voi moi association many-to-one, neu khong dinh nghia class thi hibernate su dung gia tri cua name voi ky tu dau viet hoa de xac dinh class no lien ket.
+			Neu khong tim thay class tuong ung => throw error
+		 -->
+		 <!-- Mapping quan he voi Lop 
+		 	Lien ket voi doi tuong Lop qua thuoc tinh sClass
+		 	Obj sClass duoc load thong qua cot lop_id trong db
+		-->
+		<many-to-one class="com.javatraining.entity.Lop" name="sClass" 
+		column="lop_id" not-null="true" insert="false" update="false"></many-to-one>
+	</class>
+</hibernate-mapping>

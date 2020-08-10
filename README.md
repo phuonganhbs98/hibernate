@@ -1,0 +1,2 @@
+# DemoHib
+Hibernate training demo
